@@ -1,9 +1,11 @@
 const ClientError = require('../../exceptions/ClientError');
-
+// const autoBind = require('auto-bind');
 class NotesHandler {
   constructor(service, validator) {
     this._service = service;
     this._validator = validator;
+
+    // autoBind(this);
 
     this.postNoteHandler = this.postNoteHandler.bind(this);
     this.getNotesHandler = this.getNotesHandler.bind(this);
@@ -43,7 +45,7 @@ class NotesHandler {
         message: 'Maaf, terjadi kegagalan pada server kami.',
       });
       response.code(500);
-      console.log(error);
+      console.error(error);
       return response;
     }
   }
