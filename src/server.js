@@ -1,21 +1,21 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const Hapi = require('@hapi/hapi');
-const Jwt = require('@hapi/jwt');
+const Hapi = require("@hapi/hapi");
+const Jwt = require("@hapi/jwt");
 
-const notes = require('./api/notes');
+const notes = require("./api/notes");
 // const NotesService = require('./services/inMemory/NotesService');
-const NotesService = require('./services/postgres/NotesService');
-const NotesValidator = require('./validator/notes');
+const NotesService = require("./services/postgres/NotesService");
+const NotesValidator = require("./validator/notes");
 
-const users = require('./api/users');
-const UsersService = require('./services/postgres/UsersService');
-const UsersValidator = require('./validator/users');
+const users = require("./api/users");
+const UsersService = require("./services/postgres/UsersService");
+const UsersValidator = require("./validator/users");
 
-const authentications = require('./api/authentications');
-const AuthenticationsService = require('./services/postgres/AuthenticationsService'); 
-const TokenManager = require('./tokenize/TokenManager');
-const AuthenticationsValidator =  require('./validator/authentications'); 
+const authentications = require("./api/authentications");
+const AuthenticationsService = require("./services/postgres/AuthenticationsService");
+const TokenManager = require("./tokenize/TokenManager");
+const AuthenticationsValidator = require("./validator/authentications");
 
 const init = async () => {
   const notesService = new NotesService();
@@ -27,7 +27,7 @@ const init = async () => {
     host: process.env.HOST,
     routes: {
       cors: {
-        origin: ['*'],
+        origin: ["*"],
       },
     },
   });
@@ -49,7 +49,7 @@ const init = async () => {
     validate: (artifacts) => ({
       isValid: true,
       credentials: {
-        id: artifacts.decoded.payload.id,
+        id: artifacts.decoded.id,
       },
     }),
   });
@@ -80,7 +80,6 @@ const init = async () => {
     },
   ]);
 
-  
   await server.start();
   console.log(`Server berjalan pada ${server.info.uri}`);
 };
