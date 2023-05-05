@@ -13,9 +13,13 @@ class UsersHandler {
     try {
       this._validator.validateUserPayload(request.payload);
       const { username, password, fullname } = request.payload;
-      const userId = await this._service.addUser({ username, password, fullname });
+      const userId = await this._service.addUser({
+        username,
+        password,
+        fullname,
+      });
 
-      const response = h.response ({
+      const response = h.response({
         status: 'success',
         message: 'User berhasil ditambahkan',
         data: {
@@ -66,8 +70,8 @@ class UsersHandler {
       }
 
       const response = h.response({
-       status: 'error',
-       message: 'Maaf, terjadi kegagalan pada server kami.', 
+        status: 'error',
+        message: 'Maaf, terjadi kegagalan pada server kami.',
       });
       response.code(500);
       console.error(error);
