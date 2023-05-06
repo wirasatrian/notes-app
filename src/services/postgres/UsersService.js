@@ -26,7 +26,7 @@ class UsersService {
 
     const result = await this._pool.query(query);
 
-    if (!result.rowCount) {
+    if (!result.rows[0].id) {
       throw new InvariantError('User gagal ditambahkan');
     }
 
