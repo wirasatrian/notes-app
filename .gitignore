@@ -1,5 +1,6 @@
-/.eslintrc.json
-/node_modules
+
+node_modules
 .env
 .prod.env
 notes-app.pem
+src/api/uploads/file
