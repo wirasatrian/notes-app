@@ -5,9 +5,9 @@ class CacheService {
     this._client = redis.createClient({
       socket: {
         host: process.env.REDIS_SERVER,
-        port: process.env.REDIS_PORT,
+        // port: process.env.REDIS_PORT,
         // password: 'PASSWORD',
-        legacyMode: true,
+        // legacyMode: true,
       },
     });
     this._client.on('error', (error) => {
